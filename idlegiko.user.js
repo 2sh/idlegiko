@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name			IdleGiko
-// @namespace		idlegiko
-// @description		Prevent Gikopoi timeouts
-// @include			http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version			1.0.0
-// @grant			none
+// @name          IdleGiko
+// @namespace     idlegiko
+// @description   Prevent Gikopoi timeouts
+// @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
+// @version       1.0.0
+// @grant         none
 // ==/UserScript==
 (function(doc, win)
 {
