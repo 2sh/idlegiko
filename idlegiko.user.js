@@ -8,21 +8,21 @@
 // ==/UserScript==
 (function(doc, win)
 {
-	var textareaPhone = doc.getElementById('message_txt');
+	var textAreaPhone = doc.getElementById('message_txt');
 	function sendMessage(message)
 	{
-		textareaPhone.removeAttribute('id');
+		textAreaPhone.removeAttribute('id');
 		doc.gikopoi.JSCallBackSendMessage(message);
-		textareaPhone.setAttribute('id', 'message_txt');
+		textAreaPhone.setAttribute('id', 'message_txt');
 	}
 	
-	var altTextarea = doc.createElement('textarea');
-	altTextarea.style.display = 'none';
-	altTextarea.style.position = 'absolute';
-	altTextarea.style.top = '362px';
-	altTextarea.style.left = '12px';
-	altTextarea.style.width = '380px';
-	altTextarea.style.height = '80px';
+	var altTextArea = doc.createElement('textarea');
+	altTextArea.style.display = 'none';
+	altTextArea.style.position = 'absolute';
+	altTextArea.style.top = '362px';
+	altTextArea.style.left = '12px';
+	altTextArea.style.width = '380px';
+	altTextArea.style.height = '80px';
 	
 	var altButton = doc.createElement('button');
 	altButton.style.display = 'none';
@@ -35,12 +35,12 @@
 	altButton.style.height = '28px';
 	altButton.addEventListener('click', function()
 	{
-		sendMessage(altTextarea.value);
-		altTextarea.value = '';
+		sendMessage(altTextArea.value);
+		altTextArea.value = '';
 	});
 	
 	doc.body.appendChild(altButton);
-	doc.body.appendChild(altTextarea);
+	doc.body.appendChild(altTextArea);
 	
 	var divPanel = doc.createElement('div');
 	divPanel.style.position = 'fixed';
@@ -67,10 +67,10 @@
 	buttonInput.textContent = 'Input';
 	buttonInput.addEventListener('click', function()
 	{
-		if(altTextarea.style.display == "none")
-			altTextarea.style.display = altButton.style.display = 'block';
+		if(altTextArea.style.display == "none")
+			altTextArea.style.display = altButton.style.display = 'block';
 		else
-			altTextarea.style.display = altButton.style.display = 'none';
+			altTextArea.style.display = altButton.style.display = 'none';
 	});
 	divPanel.appendChild(buttonInput);
 	
