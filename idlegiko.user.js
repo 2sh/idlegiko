@@ -3,7 +3,7 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.0.0
+// @version       1.0.1
 // @grant         none
 // ==/UserScript==
 (function(doc, win)
@@ -83,38 +83,30 @@
 	
 	doc.body.appendChild(divPanel);
 	
-	var keepAliveTime;
-	function startCountDown()
-	{
-		divTimer.style.color = 'black';
-		keepAliveTime = (new Date().getTime()) + 25 * 60 * 1000;
-		countDownLoop();
-	}
-	
+	var keepAliveTime = null;
 	function countDownLoop()
 	{
-		var left = (keepAliveTime - (new Date().getTime())) / 1000;
-		var leftSeconds = Math.round(left);
-		var wait = (left - (leftSeconds - 1)) * 1000;
-		
-		if(left < 0.5)
+		if(keepAliveTime === null)
 		{
-			sendMessage('');
-			divTimer.textContent = '00:00';
-			setTimeout(startCountDown, wait);
+			divTimer.style.color = 'black';
+			keepAliveTime = new Date().getTime() + (25 * 60 * 1000);
+		}
+		var left =  Math.round((keepAliveTime - new Date().getTime()) / 1000);
+		if(left > 0)
+		{
+			var minutes = '0' + Math.floor(left / 60);
+			var seconds = '0' + (left - (minutes * 60));
+			divTimer.textContent = minutes.substr(-2) + ':' + seconds.substr(-2);
+			if(left <= 10) divTimer.style.color = 'red';
 		}
 		else
 		{
-			var minutes = '0' + Math.floor(leftSeconds / 60);
-			var seconds = '0' + (leftSeconds - minutes * 60);
-			divTimer.textContent = minutes.substr(-2) + ':' + seconds.substr(-2);
-			if (left < 10.5)
-			{
-				divTimer.style.color = 'red';
-			}
-			setTimeout(countDownLoop, wait);
+			sendMessage('');
+			divTimer.textContent = '00:00';
+			keepAliveTime = null;
 		}
 	}
 	
-	startCountDown();
+	setInterval(countDownLoop, 1000);
+	countDownLoop();
 })(document, window);
