@@ -3,11 +3,16 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.0.1
+// @version       1.1.1
 // @grant         none
 // ==/UserScript==
 (function(doc, win)
 {
+	var objectGikopoi = doc.getElementById('gikopoi');
+	var embed = objectGikopoi.getElementsByTagName("embed")[0];
+	embed.setAttribute('wmode', 'transparent');
+	objectGikopoi.innerHTML = objectGikopoi.innerHTML;
+	
 	var textAreaPhone = doc.getElementById('message_txt');
 	function sendMessage(message)
 	{
