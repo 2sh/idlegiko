@@ -3,16 +3,12 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.1.1
+// @version       1.1.2
 // @grant         none
+// @updateURL     https://github.com/SeanHewitt/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
 (function(doc, win)
 {
-	var objectGikopoi = doc.getElementById('gikopoi');
-	var embed = objectGikopoi.getElementsByTagName("embed")[0];
-	embed.setAttribute('wmode', 'transparent');
-	objectGikopoi.innerHTML = objectGikopoi.innerHTML;
-	
 	var textAreaPhone = doc.getElementById('message_txt');
 	function sendMessage(message)
 	{
@@ -20,6 +16,11 @@
 		doc.gikopoi.JSCallBackSendMessage(message);
 		textAreaPhone.setAttribute('id', 'message_txt');
 	}
+	
+	var objectGikopoi = doc.getElementById('gikopoi');
+	objectGikopoi.getElementsByTagName('embed')[0]
+		.setAttribute('wmode', 'transparent');
+	objectGikopoi.innerHTML = objectGikopoi.innerHTML;
 	
 	var altTextArea = doc.createElement('textarea');
 	altTextArea.style.display = 'none';
