@@ -5,7 +5,7 @@
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
 // @version       1.1.2
 // @grant         none
-// @updateURL     https://github.com/SeanHewitt/idlegiko/raw/master/idlegiko.user.js
+// @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
 (function(doc, win)
 {
