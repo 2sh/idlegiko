@@ -3,12 +3,14 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.1.3
+// @version       1.1.4
 // @grant         none
 // @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
 (function(doc, win)
 {
+	doc.body.style.margin = "0";
+	
 	var textAreaPhone = doc.getElementById('message_txt');
 	function sendMessage(message)
 	{
@@ -25,8 +27,8 @@
 	var altTextArea = doc.createElement('textarea');
 	altTextArea.style.display = 'none';
 	altTextArea.style.position = 'absolute';
-	altTextArea.style.top = '362px';
-	altTextArea.style.left = '12px';
+	altTextArea.style.top = '352px';
+	altTextArea.style.left = '2px';
 	altTextArea.style.width = '380px';
 	altTextArea.style.height = '80px';
 	
@@ -35,8 +37,8 @@
 	altButton.setAttribute('type', 'button');
 	altButton.textContent = 'Send';
 	altButton.style.position = 'absolute';
-	altButton.style.top = '445px';
-	altButton.style.left = '280px';
+	altButton.style.top = '435px';
+	altButton.style.left = '270px';
 	altButton.style.width = '60px';
 	altButton.style.height = '28px';
 	altButton.addEventListener('click', function()
