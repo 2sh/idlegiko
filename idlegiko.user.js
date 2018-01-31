@@ -3,7 +3,7 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.1.4
+// @version       1.1.5
 // @grant         none
 // @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
@@ -41,11 +41,23 @@
 	altButton.style.left = '270px';
 	altButton.style.width = '60px';
 	altButton.style.height = '28px';
-	altButton.addEventListener('click', function()
+	
+	function sendTextArea()
 	{
 		sendMessage(altTextArea.value);
 		altTextArea.value = '';
-	});
+	}
+	
+	altButton.addEventListener('click', sendTextArea);
+	altTextArea.addEventListener('keydown', function(event)
+	{
+		if(event.keyCode == 13 && event.shiftKey)
+		{
+			sendTextArea();
+			event.preventDefault();
+			return false;
+		}
+	}, true);
 	
 	doc.body.appendChild(altButton);
 	doc.body.appendChild(altTextArea);
