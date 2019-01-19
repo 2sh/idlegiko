@@ -3,7 +3,7 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.1.5
+// @version       1.1.6
 // @grant         none
 // @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
@@ -15,7 +15,10 @@
 	function sendMessage(message)
 	{
 		textAreaPhone.removeAttribute('id');
-		doc.gikopoi.JSCallBackSendMessage(message);
+		if(typeof unsafeWindow !== "undefined")
+			unsafeWindow.document.gikopoi.JSCallBackSendMessage(message);
+		else
+			doc.gikopoi.JSCallBackSendMessage(message);
 		textAreaPhone.setAttribute('id', 'message_txt');
 	}
 	
