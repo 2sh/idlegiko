@@ -3,12 +3,22 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.1.6
+// @version       1.2.0
 // @grant         none
 // @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
 (function(doc, win)
 {
+	var cookieDisplayInputName = "display_input";
+	
+	function displayInput(show)
+	{
+		if(show)
+			altTextArea.style.display = altButton.style.display = 'block';
+		else
+			altTextArea.style.display = altButton.style.display = 'none';
+	}
+	
 	doc.body.style.margin = "0";
 	
 	var textAreaPhone = doc.getElementById('message_txt');
@@ -90,10 +100,14 @@
 	buttonInput.textContent = 'Input';
 	buttonInput.addEventListener('click', function()
 	{
-		if(altTextArea.style.display == "none")
-			altTextArea.style.display = altButton.style.display = 'block';
-		else
-			altTextArea.style.display = altButton.style.display = 'none';
+		var show = altTextArea.style.display == "none";
+		displayInput(show);
+		
+		var expiryDate = new Date();
+		expiryDate.setTime(expiryDate.getTime() + (7*24*60*60*1000));
+		
+		document.cookie = cookieDisplayInputName + "=" + (show ? "1" : "0")  +
+			"; expires=" + expiryDate.toUTCString() + "; path=/";
 	});
 	divPanel.appendChild(buttonInput);
 	
@@ -105,6 +119,10 @@
 	divPanel.appendChild(divTimer);
 	
 	doc.body.appendChild(divPanel);
+	
+	var match = document.cookie.match(
+		new RegExp("(?:^|; *)" + cookieDisplayInputName + "=([^;]+)"));
+	if(match && match[1] == "1") displayInput(true);
 	
 	var keepAliveTime = null;
 	function countDownLoop()
