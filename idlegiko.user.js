@@ -3,7 +3,7 @@
 // @namespace     idlegiko
 // @description   Prevent Gikopoi timeouts
 // @include       http://l4cs.jpn.org/gikopoi/flash/gikopoi*/flash_gikopoi.html
-// @version       1.2.0
+// @version       1.2.1
 // @grant         none
 // @updateURL     https://github.com/2sh/idlegiko/raw/master/idlegiko.user.js
 // ==/UserScript==
