@@ -104,7 +104,7 @@
 		displayInput(show);
 		
 		var expiryDate = new Date();
-		expiryDate.setTime(expiryDate.getTime() + (7*24*60*60*1000));
+		expiryDate.setTime(expiryDate.getTime() + (10*365*24*60*60*1000));
 		
 		document.cookie = cookieDisplayInputName + "=" + (show ? "1" : "0")  +
 			"; expires=" + expiryDate.toUTCString() + "; path=/";
